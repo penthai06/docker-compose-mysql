@@ -13,6 +13,16 @@ services:
     ports:
       - "3306:3306"
     hostname: mysqldb
+  pwa:
+    depends_on:
+      - mysqldb
+    image: phpmyadmin/phpmyadmin
+    restart: always
+    ports:
+      - "8091:80"
+    environment:
+      PMA_HOST: mysqldb
+      MYSQ_ROOT_PASSWORD: 1234
 networks:
   default:
     external:
